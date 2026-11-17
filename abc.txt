@@ -1,0 +1,325 @@
+#question 1(a)
+a = int(input("Enter first number: "))
+b = int(input("Enter second number: "))
+
+print("choices are as follows:")
+print("1. Add")
+print("2. Subtract")
+print("3. Multiply")
+print("4. Divide")
+
+ch = int(input("Enter your choice: "))
+
+if ch == 1:
+    print("Addition =", a+b)
+
+elif ch == 2:
+    print("Subtraction =", a-b)
+
+elif ch == 3:
+    print("Multiplication =", a*b)
+
+elif ch == 4:
+    print("Division =", a/b)
+
+else:
+    print("Invalid choice")
+
+
+
+
+#question 1(b)
+name = input("Enter name: ")
+year = int(input("Enter year of birth: "))
+
+age = 2026 - year
+
+print("Name:", name)
+print("Age:", age)
+
+if age >= 60:
+    print(name, "is a Senior Citizen")
+else:
+    print(name," is not a Senior Citizen")
+
+
+
+#question 2(a)
+n = int(input("Enter length of series: "))
+
+a = 0
+b = 1
+
+print("Fibonacci Series:")
+
+for i in range(n):
+    print(a, end=" ")
+    c = a+b
+    a = b
+    b = c
+
+
+
+
+
+
+
+#question 2(b)
+a = [10, 20, 30, 40]
+
+print("Original List:", a)
+
+a.insert(1, 50)
+print("After inserting:", a)
+
+a.remove(20)
+print("After removing:", a)
+
+a.append(60)
+print("After appending:", a)
+
+print("Length of list:", len(a))
+
+a.pop()
+print("After popping:", a)
+
+a.clear()
+print("After clearing:", a)
+
+
+
+
+#question 3(a)
+n = int(input("Enter number of elements: "))
+
+a = []
+
+for i in range(n):
+    x = float(input("Enter numbers: "))
+    a.append(x)
+
+mean = sum(a)/n
+
+variance = 0
+
+for i in a:
+    variance = variance + (i-mean)**2
+
+variance = variance/n
+
+sd = variance**0.5
+
+print("Mean =", mean)
+print("Variance =", variance)
+print("Standard Deviation =", sd)
+
+
+
+#question 3(b)
+n = input("Enter a multi-digit number: ")
+print("In the given number", n, "the digits occur the following number of times:")
+for i in "0123456789":
+    count = n.count(i)
+
+    if count > 0:
+        print(i, "occurs", count, "times")
+
+
+
+
+#question 4
+f = open("input.txt", "r")
+
+data = f.read()
+
+f.close()
+
+words = data.split()
+
+d = {}
+
+for i in words:
+    if i in d:
+        d[i] = d[i] + 1
+    else:
+        d[i] = 1
+
+a = list(d.items())
+
+a.sort(key=lambda x: x[1], reverse=True)
+
+print("10 Most Frequent Words:")
+
+for i in a[:10]:
+    print(i[0], ":", i[1])
+
+
+
+
+
+#question 5
+a = []
+
+for i in range(6):
+    x = int(input("Enter marks: "))
+    a.append(x)
+print("Original Marks:", a)
+for i in range(6):
+    for j in range(5-i):
+        if a[j] < a[j+1]:
+            x = a[j]
+            a[j] = a[j+1]
+            a[j+1] = x
+
+print("Marks in descending order:")
+
+for i in a:
+    print(i)
+
+
+
+
+
+
+#question 6
+f = open("input1.txt", "r")
+
+a = f.readlines()
+
+f.close()
+
+b = []
+
+for i in a:
+    x = i.strip()
+    b.append(x)
+
+b.sort()
+
+f = open("output.txt", "w")
+
+for i in b:
+    f.write(i + "\n")
+
+f.close()
+
+print("Sorted contents written to output.txt")
+
+
+
+
+
+#question 7
+def DivExp(a, b):
+    assert a > 0, "a must be positive"
+
+    if b == 0:
+        raise ZeroDivisionError("Division by zero is not allowed")
+
+    c = a / b
+    return c
+
+a = int(input("Enter a: "))
+b = int(input("Enter b: "))
+
+try:
+    c = DivExp(a, b)
+    print("Result =", c)
+
+except Exception as e:
+    print("Error:", e)
+
+
+
+
+
+
+#question 8 
+class Complex:
+    def __init__(self, r, i):
+        self.r = r
+        self.i = i
+
+    def add(self, c):
+        return Complex(self.r + c.r, self.i + c.i)
+
+    def display(self):
+        print(self.r, "+", self.i, "i")
+
+
+n = int(input("Enter number of complex numbers: "))
+
+c = Complex(0, 0)
+
+for i in range(n):
+    r = int(input("Enter real part: "))
+    im = int(input("Enter imaginary part: "))
+
+    x = Complex(r, im)
+    print("Complex number:", r, "+", im, "i")
+    c = c.add(x)
+
+print("Sum of complex numbers:")
+c.display()
+
+
+
+
+
+#question 9 
+n = int(input("Enter number of students: "))
+
+students = []
+
+for i in range(n):
+    name = input("Enter student name: ")
+    marks = int(input("Enter marks: "))
+
+    students.append((name, marks))
+
+total = 0
+
+for i in students:
+    total = total + i[1]
+
+average = total / n
+
+topper = max(students, key=lambda x: x[1])
+
+print("\nStudent Details:")
+
+for i in students:
+    print(i[0], ":", i[1])
+
+print("Average Marks =", average)
+print("Topper =", topper[0])
+print("Highest Marks =", topper[1])
+
+
+
+
+
+
+#Question 10 
+import os
+
+def display(path):
+
+    for i in os.listdir(path):
+
+        fullpath = os.path.join(path, i)
+
+        if os.path.isdir(fullpath):
+            print(i, "- Directory")
+            display(fullpath)
+
+        else:
+            print(i, "- File")
+
+
+path = input("Enter folder path: ")
+
+display(path)
+
+
+
