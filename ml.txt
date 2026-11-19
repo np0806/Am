@@ -1,0 +1,110 @@
+#bisection
+
+
+function [x] = bisection(a,b,m)
+
+f = @(x) x^3-x-1;
+
+format long
+
+c = f(a);
+d = f(b);
+
+if c*d > 0
+    error('Function has same sign at both ends')
+end
+
+disp(['x       y'])
+
+for i = 1:m
+
+    x = (a+b)/2;
+    y = f(x);
+
+    disp([x y])
+
+    if y == 0
+        break
+    end
+
+    if c*y < 0
+        b = x;
+    else
+        a = x;
+    end
+
+end
+
+end
+
+
+
+
+#regulafalsi
+
+
+function [x] = regulafalsi(a,b,m)
+
+f = @(x) x^3-x-1;
+
+format long
+
+c = f(a);
+d = f(b);
+
+if c*d > 0
+    error('Function has same sign at both ends')
+end
+
+disp(['i       x       y'])
+
+for i = 1:m
+
+    x = (a*f(b)-b*f(a))/(f(b)-f(a));
+
+    y = f(x);
+
+    disp([i x y])
+
+    if y == 0
+        break
+    end
+
+    if c*y < 0
+        b = x;
+    else
+        a = x;
+    end
+
+end
+
+end
+
+
+#newtonrampson
+
+
+function [x] = newtonraphson(x,m)
+
+f = @(x) x^3-x-1;
+df = @(x) 3*x^2-1;
+
+format long
+
+disp(['x       y'])
+
+for i = 1:m
+
+    y = f(x);
+
+    disp([x y])
+
+    if abs(y) < 1e-12
+        break
+    end
+
+    x = x-y/df(x);
+
+end
+
+end
